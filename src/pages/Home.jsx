@@ -7,7 +7,7 @@ const Home = () => {
     
       <div className="d-flex justify-content-center flex-wrap page gap-2" style={{backgroundColor:"#555"}}>
         {movies.map((movie) => (
-          <MovieCard key={movie.id} movie={movie} />
+          <MovieCard key={movie.id} Movie={movie} />
         ))}
       </div>
     

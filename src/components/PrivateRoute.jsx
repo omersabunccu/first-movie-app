@@ -6,6 +6,8 @@ import { Navigate, Outlet } from "react-router-dom"
 const PrivateRoute = () => {
 
   const {currentUser} = useAuth()
+  console.log(currentUser);
+  console.log('helllo');
 
   if(!currentUser) {
     toast.error('Please Login First')

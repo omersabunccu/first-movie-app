@@ -1,13 +1,42 @@
-import styles from '../styles/MovieCard.module.css'
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/Auth";
+import styles from "../styles/MovieCard.module.css";
+import noImage from "../images/noimage.jpg";
 
-const MovieCard = ({Movie}) => {
+const MovieCard = ({ Movie }) => {
+  const { title, poster_path, overview, vote_average, id } = Movie;
+  const imgUrl = `https://image.tmdb.org/t/p/w1280`;
 
-  const imgUrl = `https://image.tmdb.org/t/p/w1280`
+  const { currentUser } = useAuth();
+  const navigate = useNavigate();
+
+  const setVoteColor = (vote) => {
+    if (vote>=8) return 'green'
+    else if (vote>=6.5) return 'goldenrod'
+    else return 'red'
+  }
+
   return (
-    <div className={styles.movie}>
-      <img src={`${imgUrl}${Movie.poster_path}`} alt="" className='img-fluid w-100'/>
+    <div className={styles.movie} onClick={() => navigate(`/details${id}`)}>
+      {poster_path && (
+        <img
+          src={`${imgUrl}${poster_path}`}
+          alt=""
+          
+        />
+      )}
+      {!poster_path && <img src={noImage}/>}
+      <div className="text-center p-2 text-white">
+        <h5>{title}</h5>
+        {currentUser && <span className={styles.vote} style={{backgroundColor: setVoteColor(vote_average)}}>{vote_average}</span>}
+      </div>
+      <div className={styles.overview}>
+        <h2>Overview</h2>
+        <h5>{title}</h5>
+        <p>{overview}</p>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default MovieCard
+export default MovieCard;

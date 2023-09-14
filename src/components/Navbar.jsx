@@ -1,14 +1,47 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/Auth";
 import { logout } from "../firebase";
+import { useState } from "react";
+import { toast } from "react-toastify";
+import axios from "axios";
+import { useMovie } from "../context/Movies";
+
+
+const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_MOVIE_APP_KEY}&query=`
+
 const Navbar = () => {
-  const navigate = useNavigate();
   const { currentUser } = useAuth();
+  const [setMovies] = useMovie()
+  const navigate = useNavigate();
+  const [search, setSearch] = useState();
+
 
   const logoutHandler = () => {
     logout();
-    navigate('/login')
+    navigate("/login");
+  };
+
+
+  const searchHandle = async(e)=>{
+    e.preventDefault()
+    //VALIDATION
+    if(search.trim()===''){
+      toast.error('Please Enter A Movie Name')
+      return
+    }
+
+    const res = await axios(`${searchUrl}${search}`)
+
+    if(res.data.results.length>0){
+      setMovies(res.data.results)
+      navigate('/')
+    } else {
+      toast.error('no movies with that name')
+    }
     
+
+
+
   }
   return (
     <nav
@@ -24,15 +57,24 @@ const Navbar = () => {
           {currentUser ? (
             <>
               <form className="d-flex">
-              <input type="search" className="form-control me-2" placeholder="Search"/>
-              <button className="btn btn-outline-success"> Search </button>
+                <input
+                  type="search"
+                  className="form-control me-2"
+                  placeholder="Search"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                />
+                <button className="btn btn-outline-success" onClick={searchHandle}> Search </button>
               </form>
 
-              <h4 className="text-capitalize d-inline-block text-warning mx-2"> {currentUser?.displayName} </h4>
-              <button className="btn btn-outline-light" onClick={logoutHandler}>Logout</button>
+              <h4 className="text-capitalize d-inline-block text-warning mx-2">
+                {" "}
+                {currentUser?.displayName}{" "}
+              </h4>
+              <button className="btn btn-outline-light" onClick={logoutHandler}>
+                Logout
+              </button>
             </>
-
-
           ) : (
             <>
               <button
