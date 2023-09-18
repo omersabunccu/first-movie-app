@@ -17,7 +17,7 @@ const MovieCard = ({ Movie }) => {
   }
 
   return (
-    <div className={styles.movie} onClick={() => navigate(`/details${id}`)}>
+    <div className={styles.movie} onClick={() => navigate(`/details/${id}`)}>
       {poster_path && (
         <img
           src={`${imgUrl}${poster_path}`}

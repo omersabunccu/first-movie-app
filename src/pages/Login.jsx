@@ -48,7 +48,7 @@ const Login = () => {
                   id="email"
                   type="email"
                   autoComplete="off"
-                  placeholder="Enter Email"
+                  placeholder="Enter Your Email..."
                   name="email"
                   className="form-control"
                 />
@@ -68,7 +68,7 @@ const Login = () => {
                   id="password"
                   type="password"
                   autoComplete="off"
-                  placeholder="Enter password"
+                  placeholder="Enter Your Password..."
                   name="password"
                   className="form-control"
                 />
@@ -93,18 +93,18 @@ const Login = () => {
 
         <div className="d-grid">
           <button className="btn btn-primary mt-2" onClick={providerHandler}>
-            Continue with google account
+            Continue With Your Google Account
           </button>
         </div>
         <p className="text-center text-light mt-2">
-          Don't have an account
+          Don't Have an Account 
           <span
             className="text-warning"
             style={{ cursor: "pointer" }}
             onClick={() => navigate("/register")}
           >
             {" "}
-            sign up{" "}
+            Sign Up{" "}
           </span>
         </p>
       </div>
