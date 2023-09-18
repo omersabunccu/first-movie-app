@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/first-movie-app/static/css/main.ac22b737.css",
+    "main.js": "/first-movie-app/static/js/main.53bc2231.js",
+    "static/media/login.jpg": "/first-movie-app/static/media/login.0d62c309146bf2b11fb2.jpg",
+    "static/media/noimage.jpg": "/first-movie-app/static/media/noimage.e17fd2f9927700cbb28e.jpg",
+    "index.html": "/first-movie-app/index.html",
+    "main.ac22b737.css.map": "/first-movie-app/static/css/main.ac22b737.css.map",
+    "main.53bc2231.js.map": "/first-movie-app/static/js/main.53bc2231.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ac22b737.css",
+    "static/js/main.53bc2231.js"
+  ]
+}
